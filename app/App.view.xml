@@ -1,8 +1,15 @@
 <mvc:View displayBlock="true" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
   <App>
     <Page title="Northwind Data">
-      <List items="{path: '/Products'}" growing="true" growingThreshold="5">
-        <StandardListItem title="{ProductName}" description="{QuantityPerUnit}" />
+      <List growing="true" growingThreshold="10"
+        items="{path: '/Products',
+                parameters: {$filter: 'Discontinued eq true'}}"
+        >
+        <ObjectListItem title="{ProductName}" description="{QuantityPerUnit}" >
+          <markers>         
+            <ObjectMarker type="Flagged"  visible = "{Discontinued}"/>
+          </markers>      
+        </ObjectListItem>
       </List>
     </Page>
   </App>
